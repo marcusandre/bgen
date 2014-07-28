@@ -7,6 +7,9 @@
     "bgen": "bin/bgen"
   },
   "license": "MIT",
+  "dependencies": {
+    "inquirer": "^0.5.1"
+  },
   "devDependencies": {
     "prova": "^1.14.0"
   }
