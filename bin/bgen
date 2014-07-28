@@ -1,3 +1,57 @@
 #!/usr/bin/env node
 
-console.log('nothing to do right now...');
+/**
+ * Module dependencies.
+ */
+
+var inquirer = require('inquirer');
+
+/**
+ * FAQ.
+ */
+
+var faq = [];
+
+faq.push({
+  type: 'input',
+  name: 'name',
+  message: 'Project name (keep it short): '
+});
+
+faq.push({
+  type: 'input',
+  name: 'description',
+  message: 'Project description: '
+});
+
+faq.push({
+  type: 'input',
+  name: 'homepage',
+  message: 'Project homepage: '
+});
+
+faq.push({
+  type: 'input',
+  name: 'author',
+  message: 'Your name: '
+});
+
+faq.push({
+  type: 'input',
+  name: 'email',
+  message: 'Your email: '
+});
+
+// prompt
+
+inquirer.prompt(faq, parse);
+
+/**
+ * Parse cli `answers`.
+ * @param  {Object}
+ */
+
+function parse(answers){
+  console.log();
+  console.log(JSON.stringify(answers, null, '  '));
+}
