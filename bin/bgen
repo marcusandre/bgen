@@ -6,6 +6,13 @@
 
 var inquirer = require('inquirer');
 
+// compose `dir`
+
+var cwd = process.cwd();
+var dir = process.argv[2]
+  ? cwd + '/' + process.argv[2]
+  : cwd;
+
 /**
  * FAQ.
  */
@@ -44,6 +51,8 @@ faq.push({
 
 // prompt
 
+console.log('Project setup:');
+console.log();
 inquirer.prompt(faq, parse);
 
 /**
@@ -53,5 +62,5 @@ inquirer.prompt(faq, parse);
 
 function parse(answers){
   console.log();
-  console.log(JSON.stringify(answers, null, '  '));
+  console.log('Done.');
 }
