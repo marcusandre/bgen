@@ -4,10 +4,15 @@
  * Module dependencies.
  */
 
-var inquirer = require('inquirer');
+var term = require('inquirer');
+var join = require('path').join;
+var read = require('fs').readFileSync;
 
-// compose `dir`
+// define `templates`
+var templates = join(__dirname, '..', 'templates');
+var pkg = join(templates, 'package.json');
 
+// define `dir`
 var cwd = process.cwd();
 var dir = process.argv[2]
   ? cwd + '/' + process.argv[2]
@@ -43,17 +48,11 @@ faq.push({
   message: 'Your name: '
 });
 
-faq.push({
-  type: 'input',
-  name: 'email',
-  message: 'Your email: '
-});
-
 // prompt
 
 console.log('Project setup:');
 console.log();
-inquirer.prompt(faq, parse);
+term.prompt(faq, parse);
 
 /**
  * Parse cli `answers`.
@@ -62,5 +61,31 @@ inquirer.prompt(faq, parse);
 
 function parse(answers){
   console.log();
+
+  // equip `package.json`
+  var file = equip(pkg, answers);
+  console.log(file);
+
+  // write file
+
+  // Fin!
   console.log('Done.');
+}
+
+/**
+ * Equip `package.json` whith project infos.
+ * @param  {String}
+ * @param  {Object}
+ * @return {String}
+ */
+
+function equip(f, o){
+  var keys = Object.keys(o);
+  var pkg = require(f);
+
+  keys.forEach(function(data){
+    pkg[data] = o[data];
+  });
+
+  return JSON.stringify(pkg, null, 2);
 }
