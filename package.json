@@ -1,0 +1,13 @@
+{
+  "name": "bgen",
+  "version": "0.0.1",
+  "description": "opinionated frontend development boilerplate generator.",
+  "author": "Marcus André <hello@marcusandre.de>",
+  "bin": {
+    "bgen": "bin/bgen"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "prova": "^1.14.0"
+  }
+}
