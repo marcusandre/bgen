@@ -22,36 +22,17 @@ var dir = process.argv[2]
  * FAQ.
  */
 
-var faq = [];
-
-faq.push({
-  type: 'input',
-  name: 'name',
-  message: 'Project name (keep it short): '
-});
-
-faq.push({
-  type: 'input',
-  name: 'description',
-  message: 'Project description: '
-});
-
-faq.push({
-  type: 'input',
-  name: 'homepage',
-  message: 'Project homepage: '
-});
-
-faq.push({
-  type: 'input',
-  name: 'author',
-  message: 'Your name: '
-});
+var faq = survey([
+  'name',
+  'description',
+  'homepage',
+  'author'
+]);
 
 // prompt
 
-console.log('Project setup:');
 console.log();
+console.log('Project setup:');
 term.prompt(faq, parse);
 
 /**
@@ -88,4 +69,24 @@ function equip(f, o){
   });
 
   return JSON.stringify(pkg, null, 2);
+}
+
+/**
+ * Create survey questions.
+ * @param  {Array}
+ * @return {Array}
+ */
+
+function survey(arr){
+  var quests = [];
+
+  arr.forEach(function(item){
+    quests.push({
+      type: 'input',
+      name: item,
+      message: 'Project ' + item
+    });
+  });
+
+  return quests;
 }
