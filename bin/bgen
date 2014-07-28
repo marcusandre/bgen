@@ -7,6 +7,9 @@
 var term = require('inquirer');
 var join = require('path').join;
 var read = require('fs').readFileSync;
+var write = require('fs').writeFileSync;
+var mkdir = require('fs').mkdirSync;
+var exists = require('fs').existsSync;
 
 // define `templates`
 var templates = join(__dirname, '..', 'templates');
@@ -17,6 +20,10 @@ var cwd = process.cwd();
 var dir = process.argv[2]
   ? cwd + '/' + process.argv[2]
   : cwd;
+
+// create `dir`
+if (exists(dir + '/package.json')) throw new Error('There is already a file with package.json.');
+if (!exists(dir)) mkdir(dir);
 
 /**
  * FAQ.
@@ -30,7 +37,6 @@ var faq = survey([
 ]);
 
 // prompt
-
 console.log();
 console.log('Project setup:');
 term.prompt(faq, parse);
@@ -45,9 +51,9 @@ function parse(answers){
 
   // equip `package.json`
   var file = equip(pkg, answers);
-  console.log(file);
 
   // write file
+  write(dir + '/package.json', file);
 
   // Fin!
   console.log('Done.');
