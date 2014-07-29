@@ -12,15 +12,13 @@ $ bgen
 
 ## Installation
 
-    $ make install
-
-## Uninstall
-
-    $ make uninstall
+```
+$ npm install bgen -g
+```
 
 ## Dependencies
 
-  - [Node.js](http://nodejs.org/) (use [nvm](https://github.com/creationix/nvm))
+  - [Node.js](http://nodejs.org/)
 
 ## License
 
