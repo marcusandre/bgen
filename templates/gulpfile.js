@@ -4,6 +4,9 @@
  */
 
 var gulp = require('gulp');
+var prefix = require('gulp-autoprefixer');
+var stylus = require('gulp-stylus');
+var cssmin = require('gulp-cssmin');
 var header = require('gulp-header');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
@@ -24,22 +27,23 @@ var enlarged = [
 ].join('\n');
 
 var shortened = [
-  '// <%= pkg.name %>',
+  '/* <%= pkg.name %>',
   '<%= pkg.homepage %>',
-  '<%= pkg.author %>\n'
+  '<%= pkg.author %> */\n'
 ].join(' - ');
 
 /**
- * Files
+ * Files.
  */
 
 var files = {
   scripts: ['./js/main.js'],
+  styles: ['./css/**/*.styl'],
   out: './dist'
 };
 
 /**
- * Task: JS
+ * Task: JS.
  */
 
 gulp.task('js', function(){
@@ -56,4 +60,33 @@ gulp.task('js', function(){
     .pipe(header(shortened, { pkg: pkg }))
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest(out));
+});
+
+/**
+ * Task: CSS.
+ */
+
+gulp.task('css', function(){
+  var year = new Date().getFullYear();
+  var pkg = require('./package.json');
+  var out = files.out + '/css';
+
+  gulp
+    .src(files.styles)
+    .pipe(stylus())
+    .pipe(prefix())
+    .pipe(header(enlarged, { pkg: pkg, year: year }))
+    .pipe(gulp.dest(out))
+    .pipe(cssmin())
+    .pipe(header(shortened, { pkg: pkg }))
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(gulp.dest(out));
+});
+
+/**
+ * Task: Default.
+ */
+
+gulp.task('default', ['css', 'js'], function(){
+  console.log('FIN!');
 });
