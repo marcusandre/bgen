@@ -1,16 +1,13 @@
 
-PROVA = ./node_modules/.bin/prova
-
-test: node_modules
-	@NODE_ENV=test $(PROVA) test/*.js
+NPM ?= npm
 
 install:
-	@npm link .
+	@$(NPM) link .
 
 uninstall:
-	@npm uninstall bgen -g
+	@$(NPM) uninstall bgen -g
 
 node_modules: package.json
-	@npm install --silent
+	@$(NPM) install --silent
 
 .PHONY: test

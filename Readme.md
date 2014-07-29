@@ -3,6 +3,13 @@
 
   Opinionated frontend development boilerplate generator.
 
+## Usage
+
+```
+$ cd ~/Code
+$ bgen
+```
+
 ## Installation
 
     $ make install
