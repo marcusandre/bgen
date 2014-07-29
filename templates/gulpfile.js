@@ -43,13 +43,17 @@ var files = {
  */
 
 gulp.task('js', function(){
+  var year = new Date().getFullYear();
+  var pkg = require('./package.json');
   var out = files.out + '/js';
 
   gulp
     .src(files.scripts)
     .pipe(concat('scripts.js'))
+    .pipe(header(enlarged, { pkg: pkg, year: year }))
     .pipe(gulp.dest(out))
     .pipe(uglify())
+    .pipe(header(shortened, { pkg: pkg }))
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest(out));
 });
