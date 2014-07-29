@@ -5,6 +5,7 @@
  */
 
 var term = require('inquirer');
+var ncp = require('ncp').ncp;
 var join = require('path').join;
 var read = require('fs').readFileSync;
 var write = require('fs').writeFileSync;
@@ -13,17 +14,6 @@ var exists = require('fs').existsSync;
 
 // define `templates`
 var templates = join(__dirname, '..', 'templates');
-var pkg = join(templates, 'package.json');
-
-// define `dir`
-var cwd = process.cwd();
-var dir = process.argv[2]
-  ? cwd + '/' + process.argv[2]
-  : cwd;
-
-// create `dir`
-if (exists(dir + '/package.json')) throw new Error('There is already a file with package.json.');
-if (!exists(dir)) mkdir(dir);
 
 /**
  * FAQ.
@@ -49,14 +39,30 @@ term.prompt(faq, parse);
 function parse(answers){
   console.log();
 
-  // equip `package.json`
-  var file = equip(pkg, answers);
+  // compose `dir`
+  var dir = [process.cwd(), '/', answers.name].join('');
 
-  // write file
-  write(dir + '/package.json', file);
+  // check `dir`
+  if (!exists(dir)) {
+    mkdir(dir);
+  } else {
+    throw new Error('Directory already exists, sorry...');
+  }
 
-  // Fin!
-  console.log('Done.');
+  // copy `templates`
+  ncp(templates, dir, function(err){
+    if (err) throw new Error(err);
+
+    // equip `package.json`
+    var pkg = join(templates, 'package.json');
+    var file = equip(pkg, answers);
+
+    // write `package.json`
+    write(dir + '/package.json', file);
+
+    // Fin!
+    console.log('Fin!');
+  });
 }
 
 /**
