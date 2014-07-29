@@ -11,6 +11,7 @@ var header = require('gulp-header');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
+var watch = require('gulp-watch');
 
 /**
  * File `headers`.
@@ -81,6 +82,15 @@ gulp.task('css', function(){
     .pipe(header(shortened, { pkg: pkg }))
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest(out));
+});
+
+/**
+ * Task: Watch
+ */
+
+gulp.task('watch', function(){
+  gulp.watch(files.styles, ['css']);
+  gulp.watch(files.scripts, ['js']);
 });
 
 /**

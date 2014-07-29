@@ -9,6 +9,12 @@
 $ make build
 ```
 
+## Watch
+
+```bash
+$ make watch
+```
+
 ## Dependencies
 
   - [Node.js](http://nodejs.org/) (use [nvm](https://github.com/creationix/nvm))
