@@ -5,6 +5,9 @@
   "homepage": "homepage",
   "author": "author",
   "license": "MIT",
+  "scripts": {
+    "build": "make build"
+  },
   "dependencies": {},
   "devDependencies": {
     "gulp": "^3.8.6",
