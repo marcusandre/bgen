@@ -1,6 +1,6 @@
 {
   "name": "bgen",
-  "version": "0.0.5",
+  "version": "0.1.1",
   "description": "opinionated frontend development boilerplate generator.",
   "author": "Marcus André <hello@marcusandre.de>",
   "bin": {
