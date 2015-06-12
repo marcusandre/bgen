@@ -5,6 +5,7 @@
 
 var gulp = require('gulp');
 var prefix = require('gulp-autoprefixer');
+var browserify = require('gulp-browserify');
 var stylus = require('gulp-stylus');
 var cssmin = require('gulp-cssmin');
 var header = require('gulp-header');
@@ -47,11 +48,11 @@ var files = {
 
 gulp.task('js', function(){
   var pkg = require('./package.json');
-  var out = files.out + '/js';
+  var out = files.out + '/scripts';
 
   gulp
     .src(files.scripts)
-    .pipe(concat('scripts.js'))
+    .pipe(browserify())
     .pipe(header(enlarged, { pkg: pkg, date: date }))
     .pipe(gulp.dest(out))
     .pipe(uglify())
@@ -66,7 +67,7 @@ gulp.task('js', function(){
 
 gulp.task('css', function(){
   var pkg = require('./package.json');
-  var out = files.out + '/css';
+  var out = files.out + '/styles';
 
   gulp
     .src(files.styles)
