@@ -38,9 +38,9 @@ var shortened = [
  */
 
 var files = {
-  scripts: ['./js/main.js'],
-  styles: ['./css/**/*.styl'],
-  out: './dist'
+  scripts: ['./assets/scripts/main.js'],
+  styles: ['./assets/styles/**/*.styl'],
+  out: './build'
 };
 
 /**
