@@ -1,4 +1,5 @@
 
+OUT = ./build
 GULP = ./node_modules/.bin/gulp
 
 build: node_modules clean
@@ -11,6 +12,6 @@ node_modules: package.json
 	@npm install
 
 clean:
-	rm -fr ./dist
+	rm -fr $(OUT)
 
 .PHONY: clean

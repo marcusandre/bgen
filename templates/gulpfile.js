@@ -12,6 +12,8 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var watch = require('gulp-watch');
+var now = new Date();
+var date = [now.getDay(), now.getMonth(), now.getFullYear()].join('.');
 
 /**
  * File `headers`.
@@ -21,26 +23,22 @@ var enlarged = [
   '/**',
   ' * <%= pkg.name %>',
   ' * <%= pkg.description %>',
-  ' * <%= pkg.homepage %>',
-  ' * (c) <%= year %> <%= pkg.author %>',
-  ' */',
-  ''
+  ' * (c) <%= date %> - v<%= pkg.version %>',
+  ' */\n',
 ].join('\n');
 
 var shortened = [
-  '/* <%= pkg.name %>',
-  '<%= pkg.homepage %>',
-  '<%= pkg.author %> */\n'
-].join(' - ');
+  '/* <%= pkg.name %> - <%= date %> - v<%= pkg.version %> */\n',
+];
 
 /**
  * Files.
  */
 
 var files = {
-  scripts: ['./js/main.js'],
-  styles: ['./css/**/*.styl'],
-  out: './dist'
+  scripts: ['./assets/scripts/main.js'],
+  styles: ['./assets/styles/**/*.styl'],
+  out: './build'
 };
 
 /**
@@ -48,17 +46,16 @@ var files = {
  */
 
 gulp.task('js', function(){
-  var year = new Date().getFullYear();
   var pkg = require('./package.json');
   var out = files.out + '/js';
 
   gulp
     .src(files.scripts)
     .pipe(concat('scripts.js'))
-    .pipe(header(enlarged, { pkg: pkg, year: year }))
+    .pipe(header(enlarged, { pkg: pkg, date: date }))
     .pipe(gulp.dest(out))
     .pipe(uglify())
-    .pipe(header(shortened, { pkg: pkg }))
+    .pipe(header(shortened, { pkg: pkg, date: date }))
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest(out));
 });
@@ -68,7 +65,6 @@ gulp.task('js', function(){
  */
 
 gulp.task('css', function(){
-  var year = new Date().getFullYear();
   var pkg = require('./package.json');
   var out = files.out + '/css';
 
@@ -76,10 +72,10 @@ gulp.task('css', function(){
     .src(files.styles)
     .pipe(stylus())
     .pipe(prefix())
-    .pipe(header(enlarged, { pkg: pkg, year: year }))
+    .pipe(header(enlarged, { pkg: pkg, date: date }))
     .pipe(gulp.dest(out))
     .pipe(cssmin())
-    .pipe(header(shortened, { pkg: pkg }))
+    .pipe(header(shortened, { pkg: pkg, date: date }))
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest(out));
 });
