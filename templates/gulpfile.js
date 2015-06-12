@@ -97,6 +97,6 @@ gulp.task('watch', function(){
  * Task: Default.
  */
 
-gulp.task('default', ['css', 'js'], function(){
+gulp.task('build', ['css', 'js'], function(){
   console.log('FIN!');
 });
