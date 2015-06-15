@@ -43,6 +43,17 @@ var files = {
 };
 
 /**
+ * Browers
+ */
+
+var browsers = [
+  '> 1%',
+  'last 2 versions',
+  'Firefox ESR',
+  'IE 9'
+];
+
+/**
  * Task: JS.
  */
 
@@ -72,7 +83,7 @@ gulp.task('css', function(){
   gulp
     .src(files.styles)
     .pipe(stylus())
-    .pipe(prefix())
+    .pipe(prefix({ browsers: browsers }))
     .pipe(header(enlarged, { pkg: pkg, date: date }))
     .pipe(gulp.dest(out))
     .pipe(cssmin())
