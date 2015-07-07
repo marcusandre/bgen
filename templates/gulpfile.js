@@ -12,7 +12,6 @@ var header = require('gulp-header');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
-var eslint = require('gulp-eslint');
 var watch = require('gulp-watch');
 var now = new Date();
 var date = [now.getDay(), now.getMonth(), now.getFullYear()].join('.');
@@ -58,7 +57,7 @@ var browsers = [
  * Task: JS.
  */
 
-gulp.task('js', ['eslint'], function(){
+gulp.task('js', function(){
   var pkg = require('./package.json');
   var out = files.out + '/scripts';
 
@@ -91,17 +90,6 @@ gulp.task('css', function(){
     .pipe(header(shortened, { pkg: pkg, date: date }))
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest(out));
-});
-
-/**
- * Task: ESLint
- */
-
-gulp.task('eslint', function(){
-  gulp
-    .src(files.scripts)
-    .pipe(eslint({ configFile: 'eslint.json' }))
-    .pipe(eslint.format())
 });
 
 /**
