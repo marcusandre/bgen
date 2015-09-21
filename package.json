@@ -1,14 +1,29 @@
 {
   "name": "bgen",
-  "version": "0.6.0",
-  "description": "opinionated frontend development boilerplate generator.",
+  "version": "1.0.0",
+  "description": "Opinionated frontend development boilerplate generator.",
+  "main": "bin/bin",
   "author": "Marcus André <hello@marcusandre.de>",
+  "license": "MIT",
+  "keywords": [
+    "boilerplate",
+    "devtool",
+    "enhancement",
+    "frontend",
+    "generator",
+    "tooling",
+    "workflow"
+  ],
   "bin": {
     "bgen": "bin/bgen"
   },
-  "license": "MIT",
   "dependencies": {
     "inquirer": "^0.8.5",
     "ncp": "^2.0.0"
-  }
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "bin/bin"
+  ]
 }
