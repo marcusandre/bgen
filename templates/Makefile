@@ -1,8 +1,14 @@
 
 NPM ?= npm
 
-setup: node_modules
-	mkdir -p build
+test:
+	@$(NPM) run test
+
+test-cov:
+	@$(NPM) run test-cov
+
+build:
+	@$(NPM) run build
 
 node_modules:
 	@$(NPM) install -s
@@ -13,4 +19,4 @@ distclean: clean
 clean:
 	rm -fr build coverage
 
-.PHONY: node_modules
+.PHONY: node_modules test build
