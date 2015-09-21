@@ -11,8 +11,8 @@
     "test": "standard && NODE_ENV=test tape test/*.js | tap-dot",
     "test-cov": "standard && NODE_ENV=test istanbul cover test/*.js",
     "build": "(npm run build:js & npm run build:css)",
-    "build:js": "browserify lib/index.js > build/build.js",
-    "build:css": "cssnext styles/main.css > build/build.css"
+    "build:js": "mkdir -p build && browserify lib/index.js > build/build.js",
+    "build:css": "mkdir -p build && cssnext styles/main.css > build/build.css"
   },
   "dependencies": {},
   "devDependencies": {
