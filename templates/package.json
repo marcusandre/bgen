@@ -1,6 +1,6 @@
 {
   "name": "name",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "description",
   "repository": "repository",
   "author": "author",
@@ -10,11 +10,14 @@
     "lint": "standard",
     "test": "standard && NODE_ENV=test tape test/*.js | tap-dot",
     "test-cov": "standard && NODE_ENV=test istanbul cover test/*.js",
-    "build": "browserify lib/index.js > build/build.js"
+    "build": "(npm run build:js & npm run build:css)",
+    "build:js": "browserify lib/index.js > build/build.js",
+    "build:css": "cssnext styles/main.css > build/build.css"
   },
   "dependencies": {},
   "devDependencies": {
     "browserify": "^11.1.0",
+    "cssnext": "^1.8.4",
     "istanbul": "^0.3.20",
     "standard": "^5.3.1",
     "tap-dot": "^1.0.0",
