@@ -1,6 +1,9 @@
 
 NPM ?= npm
 
+setup: node_modules
+	mkdir -p build
+
 node_modules:
 	@$(NPM) install -s
 
