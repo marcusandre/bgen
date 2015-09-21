@@ -10,6 +10,9 @@ test-cov:
 build:
 	@$(NPM) run build
 
+watch:
+	@$(NPM) run watch
+
 node_modules:
 	@$(NPM) install -s
 
