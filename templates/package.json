@@ -8,12 +8,15 @@
   "main": "lib/index.js",
   "scripts": {
     "lint": "standard",
+    "test": "standard && NODE_ENV=test tape test/*.js | tap-dot",
     "build": "browserify lib/index.js > build/build.js"
   },
   "dependencies": {},
   "devDependencies": {
     "browserify": "^11.1.0",
-    "standard": "^5.3.1"
+    "standard": "^5.3.1",
+    "tap-dot": "^1.0.0",
+    "tape": "^4.2.0"
   },
   "files": [
     "LICENSE",

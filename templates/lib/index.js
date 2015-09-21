@@ -1,2 +1,3 @@
-var foo = 'bar'
-console.log(foo)
+module.exports = function add (a, b) {
+  return a + b
+}
