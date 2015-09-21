@@ -5,10 +5,23 @@
 
   This is just a dummy project.
 
+## Components
+
+  - [browserify](http://browserify.org)
+  - [cssnext](http://cssnext.io)
+  - [standard][standard-url]
+  - [watchify](https://github.com/substack/watchify)
+
 ## Build
 
 ```bash
 $ npm run build
+```
+
+## Watch
+
+```bash
+$ npm run watch
 ```
 
 ## Dependencies
