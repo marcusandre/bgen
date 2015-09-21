@@ -5,7 +5,11 @@
   "homepage": "homepage",
   "author": "author",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build": "browserify lib/index.js > build/build.js"
+  },
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "browserify": "^11.1.0"
+  }
 }
