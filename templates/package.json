@@ -2,14 +2,20 @@
   "name": "name",
   "version": "0.0.1",
   "description": "description",
-  "homepage": "homepage",
+  "repository": "repository",
   "author": "author",
   "license": "MIT",
+  "main": "lib/index.js",
   "scripts": {
     "build": "browserify lib/index.js > build/build.js"
   },
   "dependencies": {},
   "devDependencies": {
     "browserify": "^11.1.0"
-  }
+  },
+  "files": [
+    "LICENSE",
+    "index.js",
+    "README.md"
+  ]
 }
