@@ -1,1 +1,2 @@
-var foo = 'bar';
+var foo = 'bar'
+console.log(foo)
