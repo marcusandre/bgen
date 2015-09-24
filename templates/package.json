@@ -6,15 +6,18 @@
   "author": "author",
   "license": "MIT",
   "main": "lib/index.js",
+  "browserify": {
+    "transform": ["uglifyify"]
+  },
   "scripts": {
     "lint": "standard",
     "test": "standard && NODE_ENV=test tape test/*.js | tap-dot",
     "test-cov": "standard && NODE_ENV=test istanbul cover test/*.js",
     "build": "(npm run build:js & npm run build:css)",
-    "build:js": "mkdir -p build && browserify -t uglifyify lib/index.js -d | exorcist build/build.js.map > build/build.js",
+    "build:js": "mkdir -p build && browserify lib/index.js -d | exorcist build/build.js.map > build/build.js",
     "build:css": "cssnext styles/main.css build/build.css",
     "watch": "(npm run watch:js & npm run watch:css)",
-    "watch:js": "watchify -t uglifyify lib/index.js -o 'exorcist build/build.js.map > build/build.js' -dv",
+    "watch:js": "watchify lib/index.js -o 'exorcist build/build.js.map > build/build.js' -dv",
     "watch:css": "cssnext --watch styles/main.css build/build.css"
   },
   "dependencies": {},
