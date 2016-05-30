@@ -18,7 +18,7 @@
     "bgen": "bin/bgen"
   },
   "dependencies": {
-    "inquirer": "^1.0.2",
+    "inquirer": "^1.0.3",
     "ncp": "^2.0.0"
   },
   "files": [
